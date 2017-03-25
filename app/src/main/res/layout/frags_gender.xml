@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/colorPrimaryBackground"
+    >
+
+    <LinearLayout
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+            <TextView
+                android:id="@+id/tv_Male"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Male"
+                android:textSize="25sp"
+                android:drawableTop="@mipmap/ic_male"
+                android:clickable="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_Female"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Female"
+                android:textSize="25sp"
+                android:drawableTop="@mipmap/ic_female"
+                android:clickable="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_Trans"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Transgender"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:drawableTop="@mipmap/ic_trans"
+                android:clickable="true"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@color/colorPrimaryBackground">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/sw_Blood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Blood"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+        <Switch
+            android:id="@+id/sw_Serum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Serum"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+
+        <Switch
+            android:id="@+id/sw_Npop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Np/Op"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+        <Switch
+            android:id="@+id/sw_Stool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stool"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+        <Switch
+            android:id="@+id/sw_Sputum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sputum"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+
+        <Switch
+            android:id="@+id/sw_Urine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Urine"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+        <Switch
+            android:id="@+id/sw_NotDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Not done"
+            android:textSize="15sp"
+            android:padding="10dp"
+            android:textOn="@string/switch_yes"
+            android:textOff="@string/switch_no"/>
+
+        <!--<android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:cardElevation="5dp"
+            app:cardBackgroundColor="@color/cardview_shadow_start_color"
+            app:cardCornerRadius="5dp"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="6dp"
+            android:id="@+id/cv_Address">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Blood"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_Blood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Door No:"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Serum"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_Serum"
+                        android:text="Door No:"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:textSize="18sp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="NP/OP"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_Npop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Door No:"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Stool"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_Stool"
+                        android:text="Door No:"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:textSize="18sp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Sputum"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_Sputum"
+                        android:text="Door No:"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:textSize="18sp"
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Urine"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_Urine"
+                        android:text="Door No:"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:textSize="18sp"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:text="Not Done"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_NotDone"
+                        android:text="Door No:"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:textSize="18sp"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>-->
+
+
+    </LinearLayout>
+
+
+</ScrollView>
