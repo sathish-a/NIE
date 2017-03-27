@@ -11,15 +11,12 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
-/**
- * Created by sathish on 3/27/17.
- */
-
-public class Conn {
+public class Connections {
 
     public static final String TAG = "OkHttp";
     public static String hostIP = "http://132.147.164.56";
-    public static String loginURL = hostIP+"/NIE/login.jsp";
+    public static String loginURL = "/NIE/login.jsp";
+    public static String staticFormURL = "/NIE/formhandler2.jsp";
     public static String formsURL = "/NIE/forms.jsp";
     public static String submitFormURL = "/NIE/formhandler.jsp";
     public static String testSource = "http://github.com/GokulNC/Programming_Practice/blob/master/To%20Solve.txt";
@@ -62,15 +59,13 @@ public class Conn {
     }
 
 
-    public static String doPost(String Url, HashMap<String,String> hashMap)
-    {
+    public static String doPost(String Url, HashMap<String,String> hashMap) {
         String x = "";
-        POST p = new POST(Url,hashMap);
+        if(hashMap == null) return x;
+        POST p = new POST(Url, hashMap);
         try {
             x =  p.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return x.trim();
@@ -79,14 +74,12 @@ public class Conn {
 
 
 
-    static class POST extends AsyncTask<Void,Void,String>
-    {
+    static class POST extends AsyncTask<Void,Void,String> {
         String url;
 
         HashMap<String, String> map;
 
-        public POST(String Url,HashMap<String, String> map)
-        {
+        public POST(String Url,HashMap<String, String> map) {
             url = Url;
             this.map = map;
         }
@@ -95,16 +88,13 @@ public class Conn {
         protected String doInBackground(Void... voids) {
 
             okhttp3.Response response=null;
-
             try {
                 Log.d(TAG, "doInBackground: POSTING TO "+loginURL);
                 FormBody.Builder bodyBuilder = new FormBody.Builder();
                 for(String key: map.keySet()) {
                     bodyBuilder.add(key, map.get(key));
                 }
-
                 RequestBody body = bodyBuilder.build();
-
                 okhttp3.Request request = new okhttp3.Request.Builder()
                         .url(url)
                         .post(body)

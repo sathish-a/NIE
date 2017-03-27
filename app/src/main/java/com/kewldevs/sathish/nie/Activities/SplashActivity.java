@@ -12,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.VideoView;
 
+import com.kewldevs.sathish.nie.Others.Connections;
 import com.kewldevs.sathish.nie.Others.Helper;
 import com.kewldevs.sathish.nie.R;
 
@@ -26,22 +27,24 @@ public class SplashActivity extends AppCompatActivity {
      * while interacting with activity UI.
      */
 
+    boolean showSplash = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        Connections.hostIP = getPreferences(MODE_PRIVATE).getString(Helper.HOST_IP_KEY, Connections.hostIP);
+        if(showSplash) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            setContentView(R.layout.activity_splash);
+            VideoView view = (VideoView)findViewById(R.id.videoView);
+            String path = "android.resource://" + getPackageName() + "/" + R.raw.splash_animation;
+            view.setVideoURI(Uri.parse(path));
+            view.start();
+        }
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        setContentView(R.layout.activity_splash);
-
-
-        VideoView view = (VideoView)findViewById(R.id.videoView);
-        String path = "android.resource://" + getPackageName() + "/" + R.raw.splash_animation;
-        view.setVideoURI(Uri.parse(path));
-        view.start();
         new Handler().postDelayed(new Runnable() {
 
             /*
@@ -65,7 +68,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(new Intent(SplashActivity.this,MainActivity.class));
                 }
             }
-        }, SPLASH_TIME_OUT);
+        }, showSplash ? SPLASH_TIME_OUT : 0);
     }
 
 

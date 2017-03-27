@@ -70,8 +70,6 @@ public class FragsAddress extends Fragment {
         }else {
             isValidated[MainActivity.currentFrag] = false ; MainActivity.thumbsDown();
         }
-
-
     }
 
     @Override

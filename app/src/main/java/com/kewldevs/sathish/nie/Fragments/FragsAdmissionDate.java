@@ -13,6 +13,7 @@ import com.kewldevs.sathish.nie.Activities.MainActivity;
 import com.kewldevs.sathish.nie.Others.Helper;
 import com.kewldevs.sathish.nie.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,30 +22,49 @@ import java.util.Date;
 
 import static com.kewldevs.sathish.nie.Fragments.FormDataStore.isValidated;
 
+public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
-public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnDateSetListener {
+    static final int NUMBER_OF_CHECKS = 2;
+    boolean[] validaion = new boolean[NUMBER_OF_CHECKS];
 
     View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         mView =  inflater.inflate(R.layout.frags_admission, container, false);
 
-//        if(FormDataStore.admissionDate.isEmpty())
-//        showCal();
         /*DateFormat df = new SimpleDateFormat("d/M/yyyy");
         Date dateobj = new Date();
         Snackbar.make(view.findViewById(R.id.snackbarPosition), df.format(dateobj), Snackbar.LENGTH_INDEFINITE).show();*/
         ((Button) mView.findViewById(R.id.btnPickDate)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showCal();
+                showCalendar();
+            }
+        });
+
+        ((Button) mView.findViewById(R.id.btnPickTime)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePicker();
             }
         });
 
         return mView;
     }
 
-    private void showCal() {
+    void showTimePicker() {
+        Calendar now = Calendar.getInstance();
+        TimePickerDialog tpd = TimePickerDialog.newInstance(
+                FragsAdmissionDate.this,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                now.get(Calendar.SECOND),
+                false //not 24 hours
+        );
+        tpd.show(getActivity().getFragmentManager(), "Timepickerdialog");
+    }
+
+    private void showCalendar() {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = DatePickerDialog.newInstance(
                 FragsAdmissionDate.this,
@@ -57,7 +77,6 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
 
     }
 
-
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         TextView disp = (TextView ) getView().findViewById(R.id.tv_date_selected);
@@ -66,24 +85,43 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
         //Snackbar.make(getView().findViewById(R.id.snackbarPosition), dateSelected, Snackbar.LENGTH_INDEFINITE).show();
 
         //Validation occurs here itself
-        SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
+        /*SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
 
         try {
             if(sdf.parse(dateSelected).getTime() > new Date().getTime()) {
                 disp.setText("ERROR: SET A VALID DATE!!");
-                isValidated[MainActivity.currentFrag] = false;
-                MainActivity.thumbsDown();
-            } else {
+                validaion[0] = false;
+                checkIfCompletelyValidated();
+            } else {*/
                 FormDataStore.admissionDate = dateSelected;
-                isValidated[MainActivity.currentFrag] = true;
+                validaion[0] = true;
                 Log.d(Helper.TAG, "onDateSet: "+dateSelected);
-                MainActivity.thumbsUp();
-            }
+                checkIfCompletelyValidated();
+            /*}
         } catch (ParseException e) {
             e.printStackTrace();
             disp.setText("Internal App Error");
-        }
+        }*/
 
+    }
+
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        FormDataStore.admissionTime = hourOfDay+":"+minute;
+        ((TextView ) getView().findViewById(R.id.tv_time_selected)).setText(FormDataStore.admissionTime);
+        validaion[1] = true;
+        checkIfCompletelyValidated();
+    }
+
+    void checkIfCompletelyValidated() {
+        int i;
+        for(i=0; i<NUMBER_OF_CHECKS; ++i) if(!validaion[i]) break;
+
+        if(i == NUMBER_OF_CHECKS) {
+            isValidated[MainActivity.currentFrag] = true ; MainActivity.thumbsUp();
+        }else {
+            isValidated[MainActivity.currentFrag] = false ; MainActivity.thumbsDown();
+        }
     }
 
     @Override
@@ -95,5 +133,4 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
             if(mView!=null) mView.clearFocus();
         }
     }
-
 }

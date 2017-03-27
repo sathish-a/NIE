@@ -3,6 +3,7 @@ package com.kewldevs.sathish.nie.Fragments;
 import android.app.Application;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 /**
  * Created by Gokul on 24-Mar-17.
@@ -10,14 +11,14 @@ import java.util.Calendar;
 
 public class FormDataStore  extends Application {
 
-    public static final Calendar now = Calendar.getInstance();
+    //public static final Calendar now = Calendar.getInstance();
 
-
+    public static HashMap<String, String> map;
     public static int NUMBER_OF_SECTIONS = 13;
 
     public static boolean isValidated[] = new boolean[NUMBER_OF_SECTIONS];
 
-    public static String admissionDate = "";
+    public static String admissionDate = "", admissionTime = "";
     public static String deptName = ""; //can be int
     public static String regNo = ""; //can be long
     public static String patientName = "";

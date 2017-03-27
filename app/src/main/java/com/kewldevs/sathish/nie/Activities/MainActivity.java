@@ -1,5 +1,6 @@
 package com.kewldevs.sathish.nie.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.kewldevs.sathish.nie.Fragments.FormDataStore;
 import com.kewldevs.sathish.nie.Fragments.FragsAdditionalSymptoms;
@@ -121,13 +123,11 @@ public class MainActivity extends AppCompatActivity
                 currentFrag = position;
                 Log.d(Helper.TAG, "Selected: "+currentFrag);
                 setTitle(mFragmentTitleList.get(currentFrag));
-                if(position<FormDataStore.NUMBER_OF_SECTIONS)
-                {
+                if(position<FormDataStore.NUMBER_OF_SECTIONS)  {
                     Log.d(Helper.TAG, "Boolean:"+ FormDataStore.isValidated[position]);
                     if(FormDataStore.isValidated[position]) thumbsUp();
                     else thumbsDown();
-                } else mFab.setImageResource(R.drawable.ic_done_black_24dp);
-
+                }
 
                 //mFab.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(random.nextInt(255),random.nextInt(255),random.nextInt(255))));
             }
@@ -159,8 +159,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -177,16 +176,18 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item)
-    {
+    public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
 
-        switch (id)
-        {
+        switch (id) {
             case R.id.nav_logout:
                 Helper.Logout(this);
+                break;
+            case R.id.nav_settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                break;
         }
 
 
@@ -195,14 +196,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
-
-
     void setTitle(String s)
     {
         getSupportActionBar().setTitle(s);
     }
-
 
     private void setupNavigationDrawer() {
        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -215,16 +212,26 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    public static void thumbsUp()
-    {
+    public static void thumbsUp() {
         mFab.setImageResource(R.mipmap.ic_thumbs_up);
+        mFab.setOnClickListener(null);
         Log.d(Helper.TAG, "thumbsUpped");
     }
 
-    public static void thumbsDown()
-    {
+    public static void thumbsDown() {
 
         mFab.setImageResource(R.mipmap.ic_thumbs_down);
+        mFab.setOnClickListener(null);
         Log.d(Helper.TAG, "thumbsDowned");
+    }
+
+    public static void showFormSubmitButton() {
+        mFab.setImageResource(R.drawable.ic_done_black_24dp);
+        mFab.setOnClickListener(new SubmitForm());
+    }
+
+    public static void disableFormSubmitButton() {
+        mFab.setImageResource(R.drawable.ic_error_black_48dp);
+        mFab.setOnClickListener(null);
     }
 }

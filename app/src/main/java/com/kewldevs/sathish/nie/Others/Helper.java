@@ -1,8 +1,10 @@
 package com.kewldevs.sathish.nie.Others;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.preference.PreferenceManager;
 
 import com.kewldevs.sathish.nie.Activities.LoginActivity;
@@ -20,9 +22,10 @@ public class Helper {
     public static String Is_LOGGED_IN_KEY = "logged_in";
     public static String USR_KEY = "username";
     public static String USR_PASS = "password";
+    public static String SKIP_LOGIN_KEY = "skip_login";
+    public static String HOST_IP_KEY = "host_ip";
 
-    public static void Login(Activity a)
-    {
+    public static void Login(Activity a) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(a);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
         sharedPreferencesEditor.putBoolean(Helper.Is_LOGGED_IN_KEY, true).apply();
@@ -30,14 +33,18 @@ public class Helper {
         a.startActivity(new Intent(a.getApplicationContext(),MainActivity.class));
     }
 
-    public static void Logout(Activity a)
-    {
+    public static void Logout(Activity a) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(a);
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
         sharedPreferencesEditor.putBoolean(Helper.Is_LOGGED_IN_KEY, false).apply();
         a.finish();
         a.startActivity(new Intent(a.getApplicationContext(),LoginActivity.class));
 
+    }
+
+    public static boolean isNetworkAvailable(final Context context) {
+        //Source: http://stackoverflow.com/a/16124915/5002496
+        return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
 
