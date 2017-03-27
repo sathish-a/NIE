@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,7 +30,6 @@ import com.kewldevs.sathish.nie.Fragments.FragsSample;
 import com.kewldevs.sathish.nie.Fragments.FragsSummary;
 import com.kewldevs.sathish.nie.Fragments.FragsSymptoms;
 import com.kewldevs.sathish.nie.Fragments.FragsTaluks;
-import com.kewldevs.sathish.nie.Fragments.FragsTestDate;
 import com.kewldevs.sathish.nie.Others.Helper;
 import com.kewldevs.sathish.nie.Others.SectionsPagerAdapter;
 import com.kewldevs.sathish.nie.R;
@@ -58,14 +58,17 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mToolBar = (Toolbar) findViewById(R.id.toolbar);
-        mTabLayout = (TabLayout) findViewById(R.id.tlList);
-        mFab = (FloatingActionButton) findViewById(R.id.fab);
-        random = new Random();
-        setSupportActionBar(mToolBar);
-        //setupNavigationDrawer();
-        setupViewPager();
+
+            setContentView(R.layout.activity_main);
+            mToolBar = (Toolbar) findViewById(R.id.toolbar);
+            mTabLayout = (TabLayout) findViewById(R.id.tlList);
+            mFab = (FloatingActionButton) findViewById(R.id.fab);
+            random = new Random();
+            setSupportActionBar(mToolBar);
+            setupNavigationDrawer();
+            setupViewPager();
+            thumbsDown();
+
     }
 
 
@@ -74,32 +77,37 @@ public class MainActivity extends AppCompatActivity
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        addFragment(new FragsAdmissionDate(),"Admission");
-        addFragment(new FragsDept(),"Department");
-        addFragment(new FragsPatientDetails(),"Patient Details");
-        addFragment(new FragsDOB(),"Date of Birth");
-        addFragment(new FragsGender(),"Gender");
-        addFragment(new FragsMobNo(),"Mobile Number");
-        addFragment(new FragsDistrict(),"District");
-        addFragment(new FragsTaluks(),"Taluks");
-        addFragment(new FragsAddress(),"Address");
-        addFragment(new FragsSymptoms(),"Symptoms");
-        addFragment(new FragsAdditionalSymptoms(),"Additional Symptoms");
-        addFragment(new FragsSample(),"Samples");
-        addFragment(new FragsTestDate(),"Test Date");
-        addFragment(new FragsEnvSample(),"Environment Sample");
+        for(int i=0; i<FormDataStore.NUMBER_OF_SECTIONS; ++i) FormDataStore.isValidated[i] = false;
+
+        int i=-1;
+        addFragment(new FragsAdmissionDate(),"Admission Date"); ++i;
+        addFragment(new FragsDept(),"Department"); ++i;
+        addFragment(new FragsPatientDetails(),"Patient Details"); ++i;
+        addFragment(new FragsDOB(),"Age of Patient"); ++i;
+        addFragment(new FragsGender(),"Gender"); ++i;
+        addFragment(new FragsMobNo(),"Mobile Number"); ++i;
+        addFragment(new FragsDistrict(),"District"); ++i;
+        addFragment(new FragsTaluks(),"Taluks"); ++i;
+        addFragment(new FragsAddress(),"Address"); ++i;
+        addFragment(new FragsSymptoms(),"Symptoms"); ++i;
+        FormDataStore.isValidated[i] = true; //No validation needed for Symptoms
+        addFragment(new FragsAdditionalSymptoms(),"Additional Symptoms"); ++i;
+        FormDataStore.isValidated[i] = true; //No validation needed for Additional Symptoms
+        addFragment(new FragsSample(),"Samples"); ++i;
+        //addFragment(new FragsTestDate(),"Test Date");
+        addFragment(new FragsEnvSample(),"Environment Sample"); ++i;
+        FormDataStore.isValidated[i] = true; //No validation needed for Env.Samples
         addFragment(new FragsSummary(),"Summary");
 
         mSectionsPagerAdapter.addFragmentsAndTitles(mFragmentList,mFragmentTitleList);
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(15);
+
+        mViewPager.setOffscreenPageLimit(FormDataStore.NUMBER_OF_SECTIONS+1);
+
         currentFrag = mViewPager.getCurrentItem();
         setTitle(mFragmentTitleList.get(currentFrag));
-
-        if(FormDataStore.isValidated[currentFrag]) thumbsUp();
-        else thumbsDown();
 
         mTabLayout.setupWithViewPager(mViewPager);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -113,12 +121,12 @@ public class MainActivity extends AppCompatActivity
                 currentFrag = position;
                 Log.d(Helper.TAG, "Selected: "+currentFrag);
                 setTitle(mFragmentTitleList.get(currentFrag));
-                if(position<14)
+                if(position<FormDataStore.NUMBER_OF_SECTIONS)
                 {
                     Log.d(Helper.TAG, "Boolean:"+ FormDataStore.isValidated[position]);
                     if(FormDataStore.isValidated[position]) thumbsUp();
                     else thumbsDown();
-                }else mFab.setImageResource(R.drawable.ic_done_black_24dp);
+                } else mFab.setImageResource(R.drawable.ic_done_black_24dp);
 
 
                 //mFab.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(random.nextInt(255),random.nextInt(255),random.nextInt(255))));
@@ -134,12 +142,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
+        }*/
+        super.onBackPressed();
     }
 
     @Override
@@ -166,10 +175,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
@@ -177,24 +182,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id)
+        {
+            case R.id.nav_logout:
+                Helper.Logout(this);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 
 
     void setTitle(String s)
@@ -204,24 +205,26 @@ public class MainActivity extends AppCompatActivity
 
 
     private void setupNavigationDrawer() {
-       /* DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, mToolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
 
     public static void thumbsUp()
     {
         mFab.setImageResource(R.mipmap.ic_thumbs_up);
+        Log.d(Helper.TAG, "thumbsUpped");
     }
 
     public static void thumbsDown()
     {
 
         mFab.setImageResource(R.mipmap.ic_thumbs_down);
+        Log.d(Helper.TAG, "thumbsDowned");
     }
 }

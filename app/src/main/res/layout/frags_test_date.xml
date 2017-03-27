@@ -8,6 +8,6 @@
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TEST DATE" />
+        android:text="TODO: Safely remove this fragment" />
 
 </LinearLayout>

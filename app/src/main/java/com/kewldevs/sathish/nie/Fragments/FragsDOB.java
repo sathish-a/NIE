@@ -24,10 +24,6 @@ import java.util.Calendar;
 
 import static com.kewldevs.sathish.nie.Fragments.FormDataStore.isValidated;
 
-/**
- * Created by sathish on 3/23/17.
- */
-
 public class FragsDOB extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     View mView;
@@ -46,14 +42,7 @@ public class FragsDOB extends Fragment implements DatePickerDialog.OnDateSetList
         ((Button) mView.findViewById(R.id.btnPickDate)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        FragsDOB.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
+                showCalendar();
             }
         });
 
@@ -72,6 +61,18 @@ public class FragsDOB extends Fragment implements DatePickerDialog.OnDateSetList
         });
 
         return mView;
+    }
+
+    private void showCalendar() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                FragsDOB.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.setMaxDate(now);
+        dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
     }
 
     void validateAge() {
@@ -114,22 +115,23 @@ public class FragsDOB extends Fragment implements DatePickerDialog.OnDateSetList
         DateTimeFormatter dtf = DateTimeFormat.forPattern("d/M/yyyy");
         String dateSelected = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
         ageYears = calculateAge(LocalDate.now(), dtf.parseLocalDate(dateSelected));
-        if(ageYears<=0) {
-            isValidated[MainActivity.currentFrag] = false;
-            MainActivity.thumbsDown();
-            FormDataStore.age = ageYears;
-            ((TextView) getView().findViewById(R.id.tv_age_selected)).setText("Select correct DoB");
-        } else {
-            isValidated[MainActivity.currentFrag] = true;
-            MainActivity.thumbsUp();
-            ((TextView) getView().findViewById(R.id.tv_age_selected)).setText("Selected Age from DoB : " + ageYears + " years");
-        }
+        isValidated[MainActivity.currentFrag] = true;
+        MainActivity.thumbsUp();
+        ((TextView) mView.findViewById(R.id.tv_age_selected)).setText(String.format("%.2f", ageYears) + " years");
     }
 
-    double calculateAge(LocalDate now, LocalDate dob)
-    {
+    double calculateAge(LocalDate now, LocalDate dob) {
         return (now.getYear() + (now.getMonthOfYear() / 12.0)) - (dob.getYear() + (dob.getMonthOfYear() / 12.0));
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
+    }
 
 }

@@ -12,7 +12,7 @@ import android.widget.EditText;
 import com.kewldevs.sathish.nie.R;
 
 /**
- * Created by sathish on 3/23/17.
+ * Created by Jegan on 3/23/17.
  */
 
 public class FragsAdditionalSymptoms extends Fragment {
@@ -24,9 +24,7 @@ public class FragsAdditionalSymptoms extends Fragment {
     CheckBox[] yesCheckBox;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView =  inflater.inflate(R.layout.frags_additional_symptoms, container, false);
         symptomDays = new EditText[NUMBER_OF_SYMPTOMS];
         symptomHours = new EditText[NUMBER_OF_SYMPTOMS];
@@ -142,4 +140,13 @@ public class FragsAdditionalSymptoms extends Fragment {
         return mView;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
+    }
 }

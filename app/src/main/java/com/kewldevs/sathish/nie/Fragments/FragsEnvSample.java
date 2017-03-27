@@ -34,9 +34,6 @@ public class FragsEnvSample extends Fragment {
         options[1] = (Switch) mView.findViewById(R.id.sw_Food);
         options[2] = (Switch) mView.findViewById(R.id.sw_Vector);
 
-        FormDataStore.isValidated[MainActivity.currentFrag] = true; //No need of validation
-        MainActivity.thumbsUp();
-
         for(int i=0; i<NUMBER_OF_CHECKS; ++i) {
             final int temp = i;
             options[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -49,5 +46,16 @@ public class FragsEnvSample extends Fragment {
 
         return mView;
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
+    }
+
 
 }

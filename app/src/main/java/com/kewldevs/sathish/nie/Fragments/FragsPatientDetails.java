@@ -57,11 +57,12 @@ public class FragsPatientDetails extends Fragment {
             public void validate(EditText view, String text) {
                 if(text.isEmpty()) {
                     validation[1] = false;
-                    FormDataStore.regNo = text;
                     view.setError("Enter RegNo");
                 } else {
                     validation[1] = true;
                     view.setError("OK", myIcon);
+                    FormDataStore.regNo = text;
+
                 }
                 checkIfCompletelyValidated();
             }
@@ -77,6 +78,17 @@ public class FragsPatientDetails extends Fragment {
         if(i==NUMBER_OF_CHECKS) {isValidated[MainActivity.currentFrag] = true; MainActivity.thumbsUp();}
         else{ isValidated[MainActivity.currentFrag] = false; MainActivity.thumbsDown();}
 
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
     }
 
 }

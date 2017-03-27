@@ -2,6 +2,7 @@ package com.kewldevs.sathish.nie.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.kewldevs.sathish.nie.Activities.MainActivity;
+import com.kewldevs.sathish.nie.Others.Helper;
 import com.kewldevs.sathish.nie.R;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
@@ -22,25 +24,24 @@ import static com.kewldevs.sathish.nie.Fragments.FormDataStore.isValidated;
 
 public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnDateSetListener {
 
-    //TODO: Store this
-    String dateSelected = "";
-
+    View mView;
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        final View view =  inflater.inflate(R.layout.frags_admission, container, false);
+        mView =  inflater.inflate(R.layout.frags_admission, container, false);
+
 //        if(FormDataStore.admissionDate.isEmpty())
 //        showCal();
         /*DateFormat df = new SimpleDateFormat("d/M/yyyy");
         Date dateobj = new Date();
         Snackbar.make(view.findViewById(R.id.snackbarPosition), df.format(dateobj), Snackbar.LENGTH_INDEFINITE).show();*/
-        ((Button) view.findViewById(R.id.btnPickDate)).setOnClickListener(new View.OnClickListener() {
+        ((Button) mView.findViewById(R.id.btnPickDate)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showCal();
             }
         });
 
-        return view;
+        return mView;
     }
 
     private void showCal() {
@@ -51,6 +52,7 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
+        dpd.setMaxDate(now);
         dpd.show(getActivity().getFragmentManager(), "Datepickerdialog");
 
     }
@@ -59,8 +61,8 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         TextView disp = (TextView ) getView().findViewById(R.id.tv_date_selected);
-        dateSelected = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
-        disp.setText("Selected Date: "+dateSelected);
+        String dateSelected = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        disp.setText(dateSelected);
         //Snackbar.make(getView().findViewById(R.id.snackbarPosition), dateSelected, Snackbar.LENGTH_INDEFINITE).show();
 
         //Validation occurs here itself
@@ -74,6 +76,7 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
             } else {
                 FormDataStore.admissionDate = dateSelected;
                 isValidated[MainActivity.currentFrag] = true;
+                Log.d(Helper.TAG, "onDateSet: "+dateSelected);
                 MainActivity.thumbsUp();
             }
         } catch (ParseException e) {
@@ -83,5 +86,14 @@ public class FragsAdmissionDate extends Fragment implements DatePickerDialog.OnD
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
+    }
 
 }

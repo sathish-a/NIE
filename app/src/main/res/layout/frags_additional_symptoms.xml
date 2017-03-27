@@ -83,6 +83,14 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom|center"
+            android:minWidth="100dp"
+            android:text="TODO: Add More Symptoms" />
+
     </LinearLayout>
 
 </ScrollView>

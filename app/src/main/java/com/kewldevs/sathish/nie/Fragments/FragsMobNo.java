@@ -63,7 +63,7 @@ public class FragsMobNo extends Fragment {
                 } else {
                     validaion[1] = true;
                     view.setError("OK", myIcon);
-                    view.clearFocus();
+                    mView.clearFocus();
                     FormDataStore.mobNo = Long.parseLong(text.trim());
                 }
                 checkIfCompletelyValidated();
@@ -81,6 +81,16 @@ public class FragsMobNo extends Fragment {
         if(i==NUMBER_OF_CHECKS) {isValidated[MainActivity.currentFrag] = true; MainActivity.thumbsUp();}
         else {isValidated[MainActivity.currentFrag] = false; MainActivity.thumbsDown();}
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
     }
 
 }

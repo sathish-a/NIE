@@ -75,7 +75,14 @@ public class FragsGender extends Fragment implements View.OnClickListener{
         mTrans.setBackgroundColor(Color.parseColor(CLEAR_COLOR));
     }
 
-    //TODO: Only if something is selected, isValidated[MainActivity.currentFrag] = true;
-    // FormDataStore.gender = whatever
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
+    }
 
 }

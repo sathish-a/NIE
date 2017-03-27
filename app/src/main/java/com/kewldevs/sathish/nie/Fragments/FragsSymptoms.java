@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import com.kewldevs.sathish.nie.Activities.MainActivity;
 import com.kewldevs.sathish.nie.R;
 
 /**
@@ -33,8 +32,6 @@ public class FragsSymptoms extends Fragment {
         options[0] = (Switch) mView.findViewById(R.id.sw_Febrile);
         options[1] = (Switch) mView.findViewById(R.id.sw_Resp);
         options[2] = (Switch) mView.findViewById(R.id.sw_Diarrhoea);
-        FormDataStore.isValidated[MainActivity.currentFrag] = true; //No need of validation
-        MainActivity.thumbsUp();
         for(int i=0; i<NUMBER_OF_CHECKS; ++i) {
             final int temp = i;
             options[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -46,6 +43,16 @@ public class FragsSymptoms extends Fragment {
         }
 
         return mView;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
     }
 
 }

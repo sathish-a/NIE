@@ -22,9 +22,7 @@ public class FragsDept extends Fragment implements View.OnClickListener{
     View mView;
     TextView mInPatient,mOutPatient,mField,mCasualty,mLab;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView =  inflater.inflate(R.layout.frags_dept, container, false);
 
         mInPatient = (TextView) mView.findViewById(R.id.tv_InPatient);
@@ -87,5 +85,15 @@ public class FragsDept extends Fragment implements View.OnClickListener{
 
     //TODO: Only if something is selected, isValidated[MainActivity.currentFrag] = true;
     // FormDataStore.deptName = whatever
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+        }
+        else {
+            if(mView!=null) mView.clearFocus();
+        }
+    }
 
 }
