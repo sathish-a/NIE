@@ -1,16 +1,18 @@
 package com.kewldevs.sathish.nie.Activities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kewldevs.sathish.nie.Others.Conn;
 import com.kewldevs.sathish.nie.Others.Helper;
 import com.kewldevs.sathish.nie.R;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity  implements View.OnClickListener{
 
@@ -49,14 +51,20 @@ public class LoginActivity extends AppCompatActivity  implements View.OnClickLis
         String usrId = etUsrId.getText().toString() , pass = etPass.getText().toString();
         Log.d(TAG, "login: UserId: "+usrId);
         Log.d(TAG,"login: Pass: "+pass);
+        HashMap<String,String> x = new HashMap<String, String>();
+
         if(!usrId.contentEquals("") && !pass.contentEquals(""))
         {
-            if(usrId.toLowerCase().contentEquals(Helper.ADMIN) && pass.contentEquals(Helper.PASSWORD))
+            x.put(Helper.USR_KEY,usrId);
+            x.put(Helper.USR_PASS,pass);
+            String res = Conn.doPost(Conn.loginURL,x);
+            Log.d(TAG, "login: Response:"+res);
+            if(Integer.parseInt(res) == 1)
             {
-                Log.d(TAG, "login: Success");
-                startActivity(new Intent(this,MainActivity.class));
+                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                Helper.Login(this);
             }
-            else Toast.makeText(this, "Invalid User Name", Toast.LENGTH_SHORT).show();
+            else Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
         }
     }
 }
