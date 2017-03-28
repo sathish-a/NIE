@@ -35,7 +35,6 @@ public class FragsDistrict extends Fragment {
     }
 
     void setupAutoComplete() {
-
         new Thread() {
             public void run() {
 
@@ -63,6 +62,7 @@ public class FragsDistrict extends Fragment {
                                 FormDataStore.taluk_no = -1; //reset taluk
                                 FormDataStore.isValidated[MainActivity.currentFrag] = true;
                                 MainActivity.thumbsUp();
+                                actv.clearFocus();
                             }
                         });
                     }

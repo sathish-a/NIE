@@ -56,6 +56,7 @@ public class FragsTaluks extends Fragment {
                                     Toast.makeText(getContext(), "Error Parsing..", Toast.LENGTH_LONG).show();
                                 }
                                 Log.d("Autocomplete: ", "Position:"+FormDataStore.taluk_no+" Name: "+FormDataStore.taluk);
+                                actv.clearFocus();
                                 setupVillageAutoComplete();
                             }
                         });
@@ -101,6 +102,7 @@ public class FragsTaluks extends Fragment {
                                 Log.d("Autocomplete: ", "Position:"+FormDataStore.village_no+" Name:"+FormDataStore.village);
                                 MainActivity.thumbsUp();
                                 FormDataStore.isValidated[MainActivity.currentFrag] = true;
+                                mView.clearFocus();
                             }
                         });
                     }

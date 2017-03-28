@@ -5,323 +5,356 @@
     android:elevation="1dp"
     android:orientation="vertical">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:orientation="vertical">
 
-
-        <android.support.design.widget.TextInputLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:id="@+id/summaryContainer"
+            android:visibility="gone" >
 
-            <EditText
-                android:id="@+id/eTPatientname"
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Patient Name"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
+
+                <EditText
+                    android:id="@+id/eTPatientname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Patient Name"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
 
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTRegNO"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Registration No"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
+
+                <EditText
+                    android:id="@+id/eTRegNO"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Registration No"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
 
 
-        </android.support.design.widget.TextInputLayout>
+            </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTAge"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Age"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTAge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Age"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/eTDateofadmission"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Date of Admission"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
-        </android.support.design.widget.TextInputLayout>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
+
+                <EditText
+                    android:id="@+id/eTDateofadmission"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Date of Admission"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTDepartment"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Department"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTDepartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Department"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTGender"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Gender"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Gender"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTMobilenumber"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Mobile Number"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTMobilenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Mobile Number"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTTaluk"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Taluk"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTTaluk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Taluk"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTDistrict"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="District"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTDistrict"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="District"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTDoornumber"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Door Number"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTDoornumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Door Number"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTStreetname"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Street Name"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTStreetname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Street Name"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTArea"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Area"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Area"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTLocality"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Locality"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTLocality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Locality"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
+            </android.support.design.widget.TextInputLayout>
 
-            <EditText
-                android:id="@+id/eTCity"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="City"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="City"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTSymptoms"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Symptoms"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTSymptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Symptoms"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
-
-            <EditText
-                android:id="@+id/eTAdditionalsymptoms"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Additional Symptoms"
-                android:inputType="textPersonName"
-                android:enabled="false"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <EditText
+                    android:id="@+id/eTAdditionalsymptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Additional Symptoms"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
 
+            </android.support.design.widget.TextInputLayout>
 
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:padding="20dp">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
             <EditText
-                android:id="@+id/eTEnvSymptoms"
+                android:id="@+id/eTSamples"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Environment Sample"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
                 android:enabled="false"/>
-
-        </android.support.design.widget.TextInputLayout>
-
+            </android.support.design.widget.TextInputLayout>
 
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="20dp">
+                <EditText
+                    android:id="@+id/eTEnvSymptoms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Environment Sample"
+                    android:inputType="textMultiLine"
+                    android:enabled="false"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/summaryError"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ERROR!\nPLEASE FILL ALL THE FILEDS"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
     </LinearLayout>
-
-
 
 </ScrollView>
